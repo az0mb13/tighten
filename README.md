@@ -2,7 +2,9 @@
 
 Automatic tight struct packing optimization for Solidity
 
+## Prerequisites
 
+Make sure Foundry is installed. This is used in calculating gas using a sample contract. 
 
 ## Usage 
 
@@ -17,7 +19,7 @@ python tighten.py bool,uint256,uint8
 ```
 ![example](https://github.com/az0mb13/tighten/blob/master/eg.png?raw=true)
 
-
 ## To Do's
+
 - Beautify output struct order
 - Show all the ordering methods that are cheap instead of 1

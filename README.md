@@ -21,5 +21,6 @@ python tighten.py bool,uint256,uint8
 
 ## To Do's
 
+- Add support for all the remaining data types
 - Beautify output struct order
 - Show all the ordering methods that are cheap instead of 1

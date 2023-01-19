@@ -2,7 +2,7 @@
 
 Automatic tight struct packing optimization for Solidity
 
----
+
 
 ## Usage 
 
@@ -17,7 +17,6 @@ python tighten.py bool,uint256,uint8
 ```
 ![example](https://github.com/az0mb13/tighten/blob/master/eg.png?raw=true)
 
----
 
 ## To Do's
 - Beautify output struct order

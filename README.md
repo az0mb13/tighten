@@ -6,7 +6,7 @@ Automatic tight struct packing optimization for Solidity
 
 **V1 (old):** Compiles and checks the output on a sample contract using foundry gas reporter
 
-**NOTE**: This is a work in progress! Verify the results on your own.
+**NOTE**: This is a work in progress! Verify the results on your own. V2 is more accurate. V1 will take exponential time on large inputs. 
 
 ## Prerequisites
 

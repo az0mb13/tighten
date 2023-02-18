@@ -2,6 +2,8 @@
 
 Automatic tight struct packing optimization for Solidity
 
+**NOTE**: This is a work in progress! Verify the results on your own.
+
 ## Prerequisites
 
 Make sure Foundry is installed. This is used in calculating gas using a sample contract. 

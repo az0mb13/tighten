@@ -15,7 +15,7 @@ python tighten.py <struct_data_types>
 Example:
 
 ```
-python tighten.py bool,uint256,uint8
+python tighten.py uint,bytes,int,bool,address,uint256
 ```
 ![example](https://github.com/az0mb13/tighten/blob/master/eg.png?raw=true)
 

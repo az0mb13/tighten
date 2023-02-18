@@ -1,17 +1,19 @@
+import json
 import sys
 import itertools
 import os
 import subprocess
 import re
 import shutil
+from tabulate import tabulate
 
 
 def forgeit():
     try:
-        output = subprocess.check_output(['forge', 'test', '--gas-report'])
+        output = subprocess.check_output(
+            ['forge', 'test', '--gas-report', '--json'])
         output_str = output.decode("utf-8")
-
-        gasit(output_str)
+        parse_json(output_str)
     except subprocess.CalledProcessError as e:
         print("Error: ", e)
 
@@ -25,18 +27,35 @@ def deletit(directories):
                 shutil.rmtree(os.path.join(root, d))
 
 
-def gasit(parsed_str):
+def generate_table(data):
+    table_data = [[i+1, item[0], item[1]] for i, item in enumerate(data)]
+    headers = ["#", "Struct Order", "Gas"]
+    print(tabulate(table_data, headers, tablefmt="fancy_grid"))
 
-    gas_values = re.findall(r'\(gas: (\d+)\)', parsed_str)
-    file_names = re.findall(r'Running 1 test for test/(.+)\.sol:', parsed_str)
-    data = zip(file_names, gas_values)
-    # Convert the gas values from strings to integers
-    data = [(file_name, int(gas)) for file_name, gas in data]
-    # Find the minimum gas value
-    min_gas = min(data, key=lambda x: x[1])
 
-    print("Struct order: ", min_gas[0])
-    print("Gas: ", min_gas[1])
+def parse_json(output):
+    output = output.split("\n")
+    json_data = ""
+    for line in output:
+        if "{" in line:
+            json_data = line
+            break
+    # print(json_data)
+    data = json.loads(json_data)
+    min_gas = float('inf')
+    min_gas_objects = []
+    for key, value in data.items():
+        # Extract the object name
+        object_name = key.split('test/')[1].split('.sol')[0]
+
+        # Extract the gas cost
+        gas_cost = value["test_results"]["test()"]["kind"]["Standard"]
+        if gas_cost < min_gas:
+            min_gas = gas_cost
+            min_gas_objects = [(object_name.replace("_", ","), gas_cost)]
+        elif gas_cost == min_gas:
+            min_gas_objects.append((object_name.replace("_", ","), gas_cost))
+    generate_table(min_gas_objects)
 
 
 def tightenit(data_types):

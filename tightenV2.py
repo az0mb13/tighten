@@ -1,3 +1,6 @@
+import sys
+
+
 def get_data_type_size(data_type):
     # Returns the size of a data type in bytes
     if data_type.startswith('uint'):
@@ -41,5 +44,6 @@ def print_packing_order(data_types):
             print(f'  {var}')
 
 
-data_types = ['bytes10', 'address', 'uint16', 'uint8', 'bool']
-print_packing_order(data_types)
+if __name__ == '__main__':
+    data_types = sys.argv[1:]
+    print_packing_order(data_types)

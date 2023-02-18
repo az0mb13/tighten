@@ -41,6 +41,5 @@ def print_packing_order(data_types):
             print(f'  {var}')
 
 
-data_types = ['uint256', 'bytes10', 'bytes20', 'bytes30',
-              'bytes32', 'address', 'uint16', 'uint8']
+data_types = ['bytes10', 'address', 'uint16', 'uint8', 'bool']
 print_packing_order(data_types)

@@ -2,8 +2,9 @@
 
 Automatic tight struct packing optimization for Solidity
 
-V2: Works purely on struct packing logic, no compilation. 
-V1 (old): Compiles and checks the output on a sample contract using foundry gas reporter
+**V2:** Works purely on struct packing logic, no compilation. 
+
+**V1 (old):** Compiles and checks the output on a sample contract using foundry gas reporter
 
 **NOTE**: This is a work in progress! Verify the results on your own.
 
